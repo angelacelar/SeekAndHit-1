@@ -65,14 +65,15 @@ class ToyRobot(object):
     def report(self):
         print self.position.x, self.position.y, self.position.direction
 
-    def set_initial_robot_position(self, positioning):
-        if (len(positioning) == 3 and positioning[0].isdigit() and positioning[1].isdigit() and
-                self.position.is_valid_position(positioning[0], positioning[1], positioning[2])):
 
-            self.set_position(int(positioning[0]), int(positioning[1]), positioning[2])
+def set_initial_robot_position(positioning, toy_robot):
+    if (len(positioning) == 3 and positioning[0].isdigit() and positioning[1].isdigit() and
+            toy_robot.position.is_valid_position(positioning[0], positioning[1], positioning[2])):
 
-            return True
-        return False
+        toy_robot.set_position(int(positioning[0]), int(positioning[1]), positioning[2])
+
+        return True
+    return False
 
 
 def find_first_place_command(commands):
@@ -104,7 +105,7 @@ def main(text):
     if len(commands):
         positioning_command = commands[0].split(',')
 
-        if toy_robot.set_initial_robot_position(positioning_command):
+        if set_initial_robot_position(positioning_command, toy_robot):
             parse_commands(commands[1:], toy_robot)
         else:
             raise InputException('Toy robot begin position command is not valid.')

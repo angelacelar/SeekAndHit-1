@@ -1,5 +1,5 @@
 import unittest
-from toy_robot import ToyRobot, Position, find_first_place_command, parse_commands
+from toy_robot import ToyRobot, Position, set_initial_robot_position, find_first_place_command, parse_commands
 
 
 class TestToyRobot(unittest.TestCase):
@@ -91,16 +91,16 @@ class TestToyRobot(unittest.TestCase):
             ['PLACE', '1,2,EAST', 'PLACE', 'TEST']), ['TEST'])
 
     def test_set_initial_robot_position(self):
-        is_valid = self.toy_robot.set_initial_robot_position(['TEST', '2'])
+        is_valid = set_initial_robot_position(['TEST', '2'], self.toy_robot)
         self.assertEqual(is_valid, False)
 
-        is_valid = self.toy_robot.set_initial_robot_position(['TEST', '2', '2'])
+        is_valid = set_initial_robot_position(['TEST', '2', '2'], self.toy_robot)
         self.assertEqual(is_valid, False)
 
-        is_valid = self.toy_robot.set_initial_robot_position(['2', '2', '2'])
+        is_valid = set_initial_robot_position(['2', '2', '2'], self.toy_robot)
         self.assertEqual(is_valid, False)
 
-        is_valid = self.toy_robot.set_initial_robot_position(['2', '2', 'EAST'])
+        is_valid = set_initial_robot_position(['2', '2', 'EAST'], self.toy_robot)
         self.assertEqual(is_valid, True)
 
         self.assertEqual(self.toy_robot.position.x, 2)
