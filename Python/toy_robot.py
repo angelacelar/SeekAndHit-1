@@ -4,6 +4,7 @@ from collections import OrderedDict
 class InputException(Exception):
     pass
 
+
 class TableTop(object):
     direction_values = OrderedDict([
         ('NORTH', {'x': 0, 'y': 1}),
@@ -52,7 +53,8 @@ class ToyRobot(object):
 
     def _calculate_rotation(self, direction, leap):
         possible_directions = TableTop.direction_values.keys()
-        return possible_directions[(possible_directions.index(direction) + leap + len(possible_directions)) % len(possible_directions)]
+        return possible_directions[(possible_directions.index(direction) + leap + len(
+            possible_directions)) % len(possible_directions)]
 
     def rotate_left(self):
         self.position.direction = self._calculate_rotation(self.position.direction, -1)

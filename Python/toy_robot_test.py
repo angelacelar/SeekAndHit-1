@@ -42,14 +42,14 @@ class TestToyRobot(unittest.TestCase):
         self.assertEqual(self.toy_robot.position.y, 0)
         self.assertEqual(self.toy_robot.position.direction, 'SOUTH')
 
-        # test movement to the edge
+        # test movement over the edge on x
         self.toy_robot.set_position(0, 0, 'NORTH')
         parse_commands((['RIGHT', 'MOVE', 'MOVE', 'MOVE', 'MOVE', 'MOVE', 'MOVE']), self.toy_robot)
         self.assertEqual(self.toy_robot.position.x, 4)
         self.assertEqual(self.toy_robot.position.y, 0)
         self.assertEqual(self.toy_robot.position.direction, 'EAST')
 
-        # test movement to the edge
+        # test movement over the edge on y
         self.toy_robot.set_position(0, 0, 'NORTH')
         parse_commands((['MOVE', 'MOVE', 'MOVE', 'MOVE', 'MOVE', 'MOVE']), self.toy_robot)
         self.assertEqual(self.toy_robot.position.x, 0)
