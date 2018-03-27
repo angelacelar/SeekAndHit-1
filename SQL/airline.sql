@@ -1,6 +1,4 @@
-DROP DATABASE IF EXISTS airline;
 CREATE DATABASE airline;
-
 \connect airline
 
 CREATE TABLE aircraft (
