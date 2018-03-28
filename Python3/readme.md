@@ -24,7 +24,7 @@ The source files, the test data and any test code.
 Solution for this task is written in Python 2. To run the program you need to enter the following command:
 
 ```bash
-  python toy_robot.py
+  python3 toy_robot.py
 ```
 Then use following commands in proper order to use the application
 
