@@ -17,7 +17,6 @@ def get_commands_from_input(input_text):
 
     User commands can be of type 'PLACE X,Y,F MOVE LEFT RIGHT REPORT'
 
-
     :param input_text: String of text containing multiple commands
     :return: list of commands after first PLACE command. Commands returned are of strings.
     """

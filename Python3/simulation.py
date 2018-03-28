@@ -2,7 +2,7 @@ from toy_robot import ToyRobot
 from input_parser import get_commands_from_input, parse_place_command
 
 
-class Simulation(object):
+class Simulation():
     """Simulation
     Represents one simulation in which for a given text one toy_robot is created and
     does the commands specified.

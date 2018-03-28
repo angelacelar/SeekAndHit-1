@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 
-class TableTop(object):
+class TableTop():
     """TableTop
     Describes the simulation field (the environment)
 
@@ -37,7 +37,7 @@ class TableTop(object):
             return False
 
 
-class Position(object):
+class Position():
     """Position
     Represents a position of an object on the TableTop
     """

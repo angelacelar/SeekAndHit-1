@@ -1,7 +1,9 @@
+from functools import wraps
+
 from simulation_field import TableTop, Position
 
 
-class ToyRobot(object):
+class ToyRobot():
     """ToyRobot
     A moving object on the TableTop field with a position.
     Each ToyRobot has an unique id.
@@ -21,6 +23,22 @@ class ToyRobot(object):
         if TableTop.is_valid_position(x, y, direction):
             self.position = Position(x, y, direction)
 
+    def _validate_position_initialized(f):
+        """_validate_position_initialized
+        Helper decorator which checks if ToyRobot instance has a position.
+        A position is needed to execute commands move and rotate_right/rotate_left.
+
+        :param f:
+        """
+        @wraps(f)
+        def wrapper(inst, *args, **kwargs):
+            toy_robot_instance = inst
+            if not toy_robot_instance.position:
+                return
+            return f(inst, *args, **kwargs)
+        return wrapper
+
+    @_validate_position_initialized
     def move(self):
         """move
         Move the robot in the specified direction.
@@ -49,12 +67,14 @@ class ToyRobot(object):
 
         return new_direction
 
+    @_validate_position_initialized
     def rotate_left(self):
         """rotate_left
         Rotate the robot to the left. Set the direction accordingly.
         """
         self.position.direction = self._calculate_rotation(-1)
 
+    @_validate_position_initialized
     def rotate_right(self):
         """rotate_right
         Rotate the robot to the right. Set the direction accordingly.

@@ -60,6 +60,17 @@ class SimulationTest(unittest.TestCase):
         self.assertEqual(simulation.output_texts, ['4,4,EAST'])
 
 
+class TestToyRobotWithoutPosition(unittest.TestCase):
+    def setUp(self):
+        self.toy_robot = ToyRobot()
+
+    def test_commands_while_position_is_not_set(self):
+        self.toy_robot.move()
+        self.toy_robot.rotate_right()
+        self.toy_robot.rotate_left()
+        self.assertIsNone(self.toy_robot.position)
+
+
 class TestToyRobotPosition(unittest.TestCase):
     def setUp(self):
         self.toy_robot = ToyRobot()
