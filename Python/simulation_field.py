@@ -30,6 +30,7 @@ class TableTop():
         :param y: y
         :param direction: direction
         """
+
         if (x in cls.valid_range and y in cls.valid_range and
                 direction in cls.direction_values):
             return True

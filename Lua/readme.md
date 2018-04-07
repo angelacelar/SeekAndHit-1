@@ -22,5 +22,5 @@ To start using the app you need to imput the following command which sets the fr
 Then use following command to set or find the parking id that was already set
 
 ```bash
-  redis-cli --eval airplaine_parking.lua , 'number'
+  redis-cli --eval airplaine_parking.lua , 'plane_id'
 ```

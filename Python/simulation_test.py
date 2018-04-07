@@ -60,10 +60,12 @@ class SimulationTest(unittest.TestCase):
         self.assertEqual(simulation.output_texts, ['4,4,EAST'])
 
     def test_simulation_with_multiple_place_commands(self):
-        simulation = Simulation('PLACE 4,4,EAST MOVE LEFT MOVE REPORT PLACE 1,2,WEST MOVE MOVE MOVE REPORT')
+        simulation = Simulation(
+            'PLACE 4,4,EAST MOVE LEFT MOVE REPORT PLACE 1,2,WEST MOVE MOVE MOVE REPORT')
         self.assertEqual(simulation.output_texts, ['4,4,NORTH', '0,2,WEST'])
 
-        simulation = Simulation('PLACE 4,4,EAST MOVE LEFT MOVE REPORT PLACE 1,2,WEST MOVE MOVE MOVE')
+        simulation = Simulation(
+            'PLACE 4,4,EAST MOVE LEFT MOVE REPORT PLACE 1,2,WEST MOVE MOVE MOVE')
         self.assertEqual(simulation.output_texts, ['4,4,NORTH'])
 
 

@@ -8,10 +8,16 @@ class Simulation():
     does the commands specified.
     After executing all the commands the results of each REPORT command are outputed to stdout.
     """
+
     def __init__(self, command_text):
         self.commands = get_commands_from_input(command_text)
         self.output_texts = []
         self.toy_robot = ToyRobot()
+        self.movement_dict = {
+            'LEFT': self.toy_robot.rotate_left,
+            'RIGHT': self.toy_robot.rotate_right,
+            'MOVE': self.toy_robot.move
+        }
         self.execute_commands()
         self.output_results()
 
@@ -19,24 +25,30 @@ class Simulation():
         """execute_commands
         For each command in self.commands call the appropriate ToyRobot action
         """
+
         for command in self.commands:
-            if command == 'LEFT':
-                self.toy_robot.rotate_left()
-            elif command == 'RIGHT':
-                self.toy_robot.rotate_right()
-            elif command == 'MOVE':
-                self.toy_robot.move()
+            if command in self.movement_dict:
+                self.movement_dict[command]()
             elif command == 'REPORT':
-                self.output_texts.append(self.toy_robot.report())
+                report = self.toy_robot.report()
+                if report:
+                    self.output_texts.append(report)
             elif command.startswith('PLACE'):
-                x, y, direction = parse_place_command(command)
-                self.toy_robot.set_position(x, y, direction)
+                try:
+                    x, y, direction = parse_place_command(command)
+                    self.toy_robot.set_position(x, y, direction)
+                except InputException:
+                    '''Exception
+                    Silently ignore it to continue robot movement
+                    '''
+                    continue
 
     def output_results(self):
         """output_results
         Output all the texts available in self.output_texts which were filled
         in execute_commands
         """
+
         for output_text in self.output_texts:
             print(output_text)
 

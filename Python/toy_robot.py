@@ -8,6 +8,7 @@ class ToyRobot():
     A moving object on the TableTop field with a position.
     Each ToyRobot has an unique id.
     """
+
     def __init__(self):
         self.position = None
 
@@ -20,6 +21,7 @@ class ToyRobot():
         :param y: y value
         :param direction: direction value
         """
+
         if TableTop.is_valid_position(x, y, direction):
             self.position = Position(x, y, direction)
 
@@ -30,6 +32,7 @@ class ToyRobot():
 
         :param f:
         """
+
         @wraps(f)
         def wrapper(inst, *args, **kwargs):
             toy_robot_instance = inst
@@ -45,6 +48,7 @@ class ToyRobot():
         If the next position of the robot would result in an incorrect position outside the
         TableTop field, the movement is ignored.
         """
+
         direction_value = TableTop.direction_values[self.position.direction]
         temp_x = self.position.x + direction_value['x']
         temp_y = self.position.y + direction_value['y']
@@ -59,6 +63,7 @@ class ToyRobot():
 
         :param leap: 1 for clockwise or -1 for counter-clockwise
         """
+
         possible_directions = list(TableTop.direction_values.keys())
         new_direction = possible_directions[
             (possible_directions.index(self.position.direction) + leap + len(
@@ -72,6 +77,7 @@ class ToyRobot():
         """rotate_left
         Rotate the robot to the left. Set the direction accordingly.
         """
+
         self.position.direction = self._calculate_rotation(-1)
 
     @_validate_position_initialized
@@ -79,12 +85,15 @@ class ToyRobot():
         """rotate_right
         Rotate the robot to the right. Set the direction accordingly.
         """
+
         self.position.direction = self._calculate_rotation(1)
 
+    @_validate_position_initialized
     def report(self):
         """report
         Return the current position of the robot
 
         :return: string with current position of 'X,Y,F' format
         """
+
         return '{},{},{}'.format(self.position.x, self.position.y, self.position.direction)

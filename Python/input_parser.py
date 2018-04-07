@@ -8,7 +8,13 @@ class InputException(Exception):
     """InputException
     Custom exception class which is raise when user input is of incorrect format.
     """
-    pass
+
+    _default_message = 'Toy robot begin position command is not valid.'
+
+    def __init__(self, message=None):
+        if not message:
+            message = self._default_message
+        super().__init__(message)
 
 
 def get_commands_from_input(input_text):
@@ -20,6 +26,7 @@ def get_commands_from_input(input_text):
     :param input_text: String of text containing multiple commands
     :return: list of commands after first PLACE command. Commands returned are of strings.
     """
+
     input_regex = re.compile(r'PLACE\s*?\S+|MOVE|REPORT|LEFT|RIGHT')
     commands = input_regex.findall(input_text)
 
@@ -39,13 +46,17 @@ def parse_place_command(command):
     :param command: String command of format 'PLACE X,Y,F'
     :return: tuple (x, y, F)
     """
-    command_subparts = command.split(' ')
+
+    command_subparts = command.split()
     if len(command_subparts) != 2:
-        raise InputException('Toy robot begin position command is not valid.')
+        raise InputException()
+
     command_coordinates = command_subparts[1].split(',')
     if len(command_coordinates) != 3:
-        raise InputException('Toy robot begin position command is not valid.')
+        raise InputException()
+
     x, y, direction = command_coordinates
     if not x or not x.isdigit() or not y or not y.isdigit() or not direction:
-        raise InputException('Toy robot begin position command is not valid.')
+        raise InputException()
+
     return int(x), int(y), direction

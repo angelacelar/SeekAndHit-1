@@ -21,7 +21,7 @@ The source files, the test data and any test code.
 
 # Solution
 
-Solution for this task is written in Python 2. To run the program you need to enter the following command:
+Solution for this task is written in Python 3. To run the program you need to enter the following command:
 
 ```bash
   python3 toy_robot.py
@@ -29,11 +29,11 @@ Solution for this task is written in Python 2. To run the program you need to en
 Then use following commands in proper order to use the application
 
 ```bash
-  'PLACE' '#, #, (NORTH, WEST, EAST or SOUTH)' 'MOVE' 'REPORT'
+  'PLACE' '#,#,(NORTH, WEST, EAST or SOUTH)' 'MOVE' 'REPORT'
 ```
-'Please, type your commands:' text will show after the start of  the app.
+'Please, type your commands:' text will show after the start of the app.
 
-In order to properly start using it command PLACE needs to be issues with proper coordinates and direction following:
+In order to properly start using it, command PLACE needs to be issues with proper coordinates and direction following:
 
 ```bash
   Please, type your commands: PLACE 1,1,NORTH MOVE LEFT RIGHT MOVE REPORT
